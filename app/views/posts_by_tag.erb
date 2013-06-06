@@ -1,0 +1,6 @@
+<div class="container">
+	<h1>Posts For The Tag: <%= @tag.name %></h1>
+	<% @posts.each do |post| %>
+		<p><%= post.title %></p>
+	<% end %>
+</div>

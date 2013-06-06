@@ -1,23 +1,47 @@
 <div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, world!</p>
+  <h1>Blogs and Snogs</h1>
 
-  <table>
-    <tr>
-      <th>File Description</th>
-      <th>File Location</th>
-    </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-  </table>
+  <div class="recent_posts_container">
+    <h2>Recent Posts</h2>
+    <% @recent_posts.each do |post| %>
+      <a href="/posts/<%= post.id %>">
+        <div class="recent_post">
+          <h3><%= post.title %></h3>
+          <p><%= post.text %></h3>
+        </div>
+      </a>
+    <% end %>
+  </div>
+
+  <div class="create_new_post">
+    <h2>Create New Post</h2>
+    <form action="new_post" method="post">
+      <label for="title">Title</label>
+      <input type="text" name="title"><br>
+      <label for="text">Text</label>
+      <input type="text" name="text"><br>
+      <label for="text">Tags (separate by commas)</label>
+      <input type="text" name="tags"><br>
+      <input type="submit" value="Submit">
+    </form>
+  </div><br>
+
+  <div class="home_search">
+    <a href="/tags" class="search_by_tags">Search By Tags</a><br>
+    <p>-or-</p>
+    <form method="post" action="/find_by_content">
+      <input type="text" name="content" placeholder="Search Content">
+      <input type="submit" value="Search">
+    </form>
+  </div>
+
+
+  <div>
+<!-- 
+    <% @posts.each do |post| %>
+      <p><%= post.title %></p>
+      <p><%= post.text %></p>
+    <% end %> -->
+
+  </div>
 </div>
